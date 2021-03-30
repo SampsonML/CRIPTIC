@@ -1,0 +1,69 @@
+# criptic input deck
+
+######## Top-level quantities ########
+
+ncells        = 128 128 128                  # Number of cells
+max_grid_size = 128                           # Maximum grid size
+xlo           = -3.09e19 -3.09e19 -3.09e19   # Lower edge of domain
+xhi           =  3.09e19  3.09e19  3.09e19   # Upper edge of domain
+periodic      = 0 0 0                        # No direction is periodic
+dt_init       = 1.0e7                        # Starting time step
+max_dt_incr   = 1.1                          # Maximum increase in dt/step
+max_step      = 0                            # Maximum number of steps
+max_time      = 2.0e8                        # Maximum simulation time
+c_glob        = 0.1                          # Global step control param
+c_frac_min    = 1.0e-3                       # Global step control param
+cr_step_size  = 0.5                          # CR step control param
+err_tol       = 1.0e-3                       # B-tracing error tolerance
+min_cr_wgt    = 1.0e-2                       # Minimum packet weight
+
+######## IO control parameters ########
+
+plot_int      = 0                            # Steps between checkpoints
+plot_time     = 1.0e8                        # Time of checkpoints
+
+######## Control parameters for particles ########
+
+particles.do_tiling = 1
+
+######## Cosmic ray control quantities #######
+
+cr.n_energy    = 2                           # Number of CR energy bins
+cr.e_min       = 1.0                         # Minimum CR energy in GeV
+cr.e_max       = 100.0                       # Maximum CR energy in GeV
+cr.q_samp      = -1.0                        # Index used to sample CR momentum
+cr.packet_rate = 5.0e-4                      # Number of packets injected/time
+
+
+######## Parameters describing cosmic ray propagation #######
+
+# This input file uses the simple powerlaw parameterization, whereby
+# kPar = kPar0 * (p / m_p c)^kParIdx, and similarly for all other quantities
+
+crprop.kPar0    = 2.0e28                     # Parallel diffusion
+crprop.kParIdx  = 0.5
+crprop.kPerp0   = 0.0                     # Perpendicular diffusion
+crprop.kPerpIdx = 0.0
+crprop.vStr0    = 0.0                        # Streaming
+crprop.vStrIdx  = 0.0
+crprop.kPP0     = 0.0                        # Momentum diffusion
+crprop.kPPIdx   = 0.0
+
+######## Problem-specific quantities ########
+
+prob.rho      = 2.34e-23                     # Mass density
+prob.chi      = 1.0e-4                       # Ionized mass fraction
+prob.B_Phi    =  3.0e-6                      # Magnetic field
+prob.source_x = 1.5e19 1.5e19                # x coordinate of CR sources
+prob.source_y = 0.0 0.0                      # y coordinate of CR sources
+prob.source_z = 0.0 0.0                      # z coordinate of CR sources
+prob.source_L = 1.0e38 1.0e38                # Luminosity in erg/s
+prob.source_e_min = 1.0  10.0                # Minimum energy in GeV
+prob.source_e_max = 1.0001 10.001            # Maximum energy in GeV
+prob.source_q = -2.2 -2.2                    # Spectral index of sources
+
+######### Notes for Matt
+# Point source shifted in x-axis
+# Vary mag field strength (B_phi)
+
+
