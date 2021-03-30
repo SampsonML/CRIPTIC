@@ -8,6 +8,57 @@
 #include "SR.H"
 #include <math.h> 
 
+// HDF5 things
+#include <string>
+#include <new>
+#include "hdf5.h"
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include "H5Cpp.h"
+#include <experimental/iterator>
+#ifndef H5_NO_NAMESPACE
+    using namespace H5;
+#endif
+
+
+// Define namespace for FLASH gas state indexing
+namespace FLASH_Idx {
+
+  // Reading in HDF5 files for initial gas state
+  // Hard code the filename for now
+  void ReaderTest(std::string fn){
+    //char fn[] = "Input_01";
+    std::string file_name(fn);
+    ifstream file(file_name.c_str()); //opens file
+      //char fn[] = "Input_01";
+      cout<<"File: " << file_name << " read in successfully." << std::endl;;
+      file.close(); //closes file
+  };
+
+  char fn[] = "Input_01";
+  //FLASH_Idx::ReaderTest(fn)  
+  // End of reading in file -- Testing reading success
+  // Read in actual data
+  const H5std_string FILE_NAME( fn );
+  const H5std_string DATASET_NAME( "dens" );
+
+  const H5std_string FILE_NAME( fn );
+  const H5std_string DATASET_NAME( "dens" );
+
+  H5File file( FILE_NAME, H5F_ACC_RDONLY );
+  DataSet dataset_dens = file.openDataSet( DATASET_NAME );
+  DataSet dataset_velx = file.openDataSet( "velx" );
+  DataSet dataset_vely = file.openDataSet( "vely" );
+  DataSet dataset_velz = file.openDataSet( "velz" );
+  DataSet dataset_magx = file.openDataSet( "magx" );
+  DataSet dataset_magy = file.openDataSet( "magy" );
+  DataSet dataset_maxz = file.openDataSet( "magz" );
+  DataSet dataset_coords = file.openDataSet( "coordinates" );
+
+
+};
+
 
 
 using namespace amrex;
