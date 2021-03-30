@@ -1,0 +1,42 @@
+=== If no file names and line numbers are shown below, one can run
+            addr2line -Cpfie my_exefile my_line_address
+    to convert `my_line_address` (e.g., 0x4a6b) into file name and line number.
+    Or one can use amrex/Tools/Backtrace/parse_bt.py.
+
+=== Please note that the line number reported by addr2line may not be accurate.
+    One can use
+            readelf -wl my_exefile | grep my_line_address'
+    to find out the offset for that line.
+
+ 0: ./criptic() [0x53e466]
+    amrex::BLBackTrace::print_backtrace_info(_IO_FILE*)
+/avatar/krumholz/amrex/Src/Base/AMReX_BLBackTrace.cpp:174
+
+ 1: ./criptic() [0x5407c4]
+    amrex::BLBackTrace::handler(int)
+/avatar/krumholz/amrex/Src/Base/AMReX_BLBackTrace.cpp:80
+
+ 2: ./criptic() [0x466ea0]
+    amrex::Abort_host(char const*)
+/avatar/krumholz/amrex/Src/Base/AMReX.cpp:247
+
+ 3: ./criptic() [0x46f9ba]
+    sgetarr<double>
+/avatar/krumholz/amrex/Src/Base/AMReX_ParmParse.cpp:842
+
+ 4: ./criptic() [0x474f1f]
+    sgetarr<int> inlined at /avatar/krumholz/amrex/Src/Base/AMReX_ParmParse.cpp:1244 in amrex::ParmParse::getarr(char const*, std::vector<int, std::allocator<int> >&, int, int) const
+/avatar/krumholz/amrex/Src/Base/AMReX_ParmParse.cpp:1245
+
+ 5: ./criptic() [0x409bb6]
+    main
+/home/sampsonm/criptic/Source/main.cpp:34
+
+ 6: /lib64/libc.so.6(__libc_start_main+0xf5) [0x7fd6367ed555]
+    __libc_start_main
+??:0
+
+ 7: ./criptic() [0x40cda5]
+    _start
+??:0
+
